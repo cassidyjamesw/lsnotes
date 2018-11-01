@@ -1,41 +1,41 @@
-require('dotenv').config();
+require("dotenv").config();
 const localPg = {
-  host: 'localhost',
-  database: 'lambda',
+  host: "localhost",
+  database: "lambda",
   user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  password: process.env.DB_PASS
 };
 const dbConnection = process.env.DATABASE_URL || localPg;
 
 module.exports = {
   development: {
-    client: 'sqlite3',
+    client: "sqlite3",
     connection: {
-      filename: './db/lambda.sqlite3',
+      filename: "./db/lambda.sqlite3"
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './db/migrations',
+      tableName: "knex_migrations",
+      directory: "./db/migrations"
     },
     seeds: {
-      directory: './db/seeds',
+      directory: "./db/seeds"
     },
-    useNullAsDefault: true,
+    useNullAsDefault: true
   },
 
   production: {
-    client: 'pg',
+    client: "pg",
     connection: dbConnection,
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './db/migrations',
+      tableName: "knex_migrations",
+      directory: "./db/migrations"
     },
     seeds: {
-      directory: './db/seeds',
-    },
-  },
+      directory: "./db/seeds"
+    }
+  }
 };
